@@ -35,13 +35,14 @@ body {
 /* Estilos para pantallas pequeñas */
 @media only screen and (max-width: 600px) {
   #lyrics {
-      font-size: 10px;
-      letter-spacing: 3px;
-      top: 30%;  /* Reduce la distancia en pantallas pequeñas */
-      right: 5%;
+    font-size: 10px;
+    letter-spacing: 3px;
+    top: 90%;
+    text-align: center;
   }
+
 }
-.titulo {
+.titulo{
   margin-bottom: 180px;
   font-family: "Arial Narrow", Arial, sans-serif;
   color: yellow;
@@ -51,7 +52,16 @@ body {
   opacity: 0;
   animation: fadeIn 3s ease-in-out forwards;
   text-align: center;
+  width: 100%;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  padding: 20px;
+  text-shadow: 0 0 5px #5ed639, 0 0 10px #5ed639, 0 0 15px #5ed639, 0 0 20px #5ed639;
 }
+
+/* Animación de aparición */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -61,6 +71,74 @@ body {
   }
 }
 
+@media screen and (max-width: 480px) {
+  .titulo {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    padding-top: 30px;
+    top: 0; /* Mueve el título a la parte superior */
+    position: fixed; /* Fija el título en la parte superior */
+  }
+}
+.frase {
+  margin-bottom: 180px;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  font-weight: bold;
+  letter-spacing: 10px;
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out forwards, glow 2s infinite alternate;
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  padding: 20px;
+  
+  /* Efecto de sombra luminosa */
+  text-shadow: 0 0 5px #5ed639, 0 0 10px #5ed639, 0 0 15px #5ed639, 0 0 20px #5ed639;
+}
+
+/* Animación de brillo */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #5ed639, 0 0 10px #5ed639, 0 0 15px #5ed639, 0 0 20px #5ed639;
+  }
+  100% {
+    text-shadow: 0 0 10px #5ed639, 0 0 20px #5ed639, 0 0 30px #5ed639, 0 0 40px #5ed639;
+  }
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.time{
+  margin-bottom: 180px;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  color: yellow;
+  position: absolute;
+  font-weight: bold;
+  letter-spacing: 10px;
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out forwards;
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  padding: 20px;
+}
 .night {
   z-index: -1;
   position: absolute;

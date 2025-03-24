@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Animada</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+    <div class="night"></div>
+    <div class="gallery-container">
+        <!-- Barra de miniaturas -->
+        <div class="sidebar">
+            <img src="img/imagen1.jpg" alt="Miniatura 1" onclick="changeImage('img/imagen1.jpg')">
+            <img src="img/imagen2.jpg" alt="Miniatura 2" onclick="changeImage('img/imagen2.jpg')">
+            <img src="img/imagen3.jpg" alt="Miniatura 3" onclick="changeImage('img/imagen3.jpg')">
+            <img src="img/imagen4.jpg" alt="Miniatura 4" onclick="changeImage('img/imagen4.jpg')">
+            <img src="img/imagen5.jpg" alt="Miniatura 5" onclick="changeImage('img/imagen5.jpg')">
+            <img src="img/imagen6.jpg" alt="Miniatura 6" onclick="changeImage('img/imagen6.jpg')">
+            <img src="img/imagen7.jpg" alt="Miniatura 7" onclick="changeImage('img/imagen7.jpg')">
+            <img src="img/imagen8.jpg" alt="Miniatura 8" onclick="changeImage('img/imagen8.jpg')">
+            <img src="img/imagen9.jpg" alt="Miniatura 9" onclick="changeImage('img/imagen9.jpg')">
+            <img src="img/imagen10.jpg" alt="Miniatura 10" onclick="changeImage('img/imagen10.jpg')">
+        </div>
+    
+        <!-- Imagen principal -->
+        <div class="main-image">
+            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal">
+        </div>
+    </div>
+    <script>
+        function changeImage(src) {
+            document.getElementById('displayed-image').src = src;
+        }
+    </script>
+</body>
+</html>

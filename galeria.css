@@ -1,0 +1,139 @@
+/* Estilos generales */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.gallery-container {
+    display: flex;
+    flex-direction: column;  /* 🔥 Ahora la barra de miniaturas va primero */
+    align-items: center;
+    background-color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 90%;
+    width: 850px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Barra lateral de miniaturas */
+.sidebar {
+    display: flex;
+    flex-direction: row; /* 🔥 Se muestran en fila arriba */
+    gap: 10px;
+    padding: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+    justify-content: center;
+    white-space: nowrap;
+    margin-bottom: 15px; /* 🔥 Agrega espacio entre las miniaturas y la imagen */
+}
+
+.sidebar img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sidebar img:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+}
+
+/* Imagen principal */
+.main-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 450px;
+    background-color: #222;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.main-image img {
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* Modo nocturno */
+.night {
+    background-color: #000;
+}
+
+.night .gallery-container {
+    background-color: #222;
+}
+
+.night .sidebar img {
+    filter: brightness(0.8);
+}
+
+.night .sidebar img:hover {
+    filter: brightness(1);
+}
+
+.night .main-image {
+    background-color: #333;
+}
+
+/* 📌 RESPONSIVIDAD */
+@media (max-width: 900px) {
+    .gallery-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        justify-content: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+
+    .main-image {
+        width: 90%;
+        height: auto;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar img {
+        width: 60px;
+        height: 50px;
+    }
+
+    .gallery-container {
+        padding: 0px;
+        min-height: 70vh;
+    }
+
+    .main-image {
+        padding: 0px;
+        min-height: 90vh;
+
+    }
+}

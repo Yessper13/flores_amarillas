@@ -96,6 +96,7 @@ body{
 
 
 .greetings {
+    
     text-align: center;
     font-size: 7rem;
     font-weight: 900;
@@ -112,8 +113,9 @@ body{
         text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
     }
     10%, 90% {
-        color: #111;
+        color: #ffffff;
         text-shadow: none;
+        text-shadow: -4px -8px 10px rgb(164 255 5);
     }
 }
 

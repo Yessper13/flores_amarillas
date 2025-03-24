@@ -10,6 +10,10 @@
 <body>
     <div class="night"></div>
     <div class="gallery-container">
+        <!-- Imagen principal -->
+        <div class="main-image">
+            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal">
+        </div>
         <!-- Barra de miniaturas -->
         <div class="sidebar">
             <img src="img/imagen1.jpg" alt="Miniatura 1" onclick="changeImage('img/imagen1.jpg')">
@@ -24,10 +28,7 @@
             <img src="img/imagen10.jpg" alt="Miniatura 10" onclick="changeImage('img/imagen10.jpg')">
         </div>
     
-        <!-- Imagen principal -->
-        <div class="main-image">
-            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal">
-        </div>
+        
     </div>
     <script>
         function changeImage(src) {

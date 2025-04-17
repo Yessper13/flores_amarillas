@@ -31,8 +31,8 @@
         
     </div>
 <!-- Contenedor del video -->
-<div class="video-container">
-    <video controls>
+<div class="video-container fade-in">
+    <video id="miVideo" autoplay loop muted playsinline>
         <source src="img/2025-04-16-093718035.mp4" type="video/mp4">
         Tu navegador no soporta el elemento de video.
     </video>
@@ -42,6 +42,12 @@
         function changeImage(src) {
             document.getElementById('displayed-image').src = src;
         }
+        const video = document.getElementById('miVideo');
+    if (window.innerWidth > 768) {
+        video.setAttribute('controls', 'controls');
+    }
+
+        
     </script>
 </body>
 </html>

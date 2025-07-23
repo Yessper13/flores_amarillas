@@ -1,3 +1,19 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Miniatura de video en el carrusel
+    const sidebar = document.querySelector('.sidebar');
+    const videoThumb = document.createElement('img');
+    videoThumb.src = 'img/video-thumb.png';
+    videoThumb.alt = 'Video';
+    videoThumb.style.objectFit = 'cover';
+    videoThumb.onclick = function() {
+        changeImage('img/2025-04-16-093718035.mp4', true);
+    };
+    sidebar.appendChild(videoThumb);
+
+    // Solo un listener para agregar imagen
+    document.getElementById('addImageInput').addEventListener('change', addImage);
+});
+
 function changeImage(src, isVideo = false) {
     const mainImage = document.getElementById('displayed-image');
     const mainVideo = document.getElementById('displayed-video');
@@ -32,33 +48,15 @@ function addImage() {
             changeImage(img.src);
         };
         reader.readAsDataURL(input.files[0]);
+        input.value = ""; // Limpia el input para permitir agregar la misma imagen de nuevo si se desea
     }
 }
-
-// Agrega miniatura de video al carrusel al cargar la página
-window.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.querySelector('.sidebar');
-    const videoThumb = document.createElement('img');
-    videoThumb.src = 'img/video-thumb.jpg'; // Usa una imagen representativa del video
-    videoThumb.alt = 'Video';
-    videoThumb.style.objectFit = 'cover';
-    videoThumb.onclick = function() {
-        changeImage('img/2025-04-16-093718035.mp4', true);
-    };
-    sidebar.appendChild(videoThumb);
-});
 
 // Video controles responsivos
 const video = document.getElementById('miVideo');
 if (window.innerWidth > 768) {
     video.setAttribute('controls', 'controls');
 }
-
-document.querySelector('.add-image-icon').addEventListener('click', function() {
-    document.getElementById('addImageInput').click();
-});
-
-document.getElementById('addImageInput').addEventListener('change', addImage);
 
 // Video control logic
 const mainVideo = document.getElementById('displayed-video');
@@ -86,5 +84,5 @@ mainVideo.addEventListener('pause', function() {
 
 muteBtn.addEventListener('click', function() {
     mainVideo.muted = !mainVideo.muted;
-    muteIcon.src = mainVideo.muted ? 'img/mute.png' : 'img/volume.png';
+    muteIcon.src = mainVideo.muted ? 'img/mute.png' : 'img/volumen.png';
 });

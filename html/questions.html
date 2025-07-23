@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Preguntas de Pareja</title>
+  <link rel="stylesheet" href="../css/question.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Preguntas para Parejas 💕</h1>
+
+    <div id="codigo-section">
+      <input type="text" id="codigo" placeholder="Código de sesión">
+      <button onclick="unirseSesion()">Unirse</button>
+    </div>
+
+    <div id="pregunta-section" style="display: none;">
+      <p id="pregunta"></p>
+      <input type="text" id="respuesta" placeholder="Tu respuesta...">
+      <button onclick="enviarRespuesta()">Enviar</button>
+    </div>
+
+    <div id="resultado-section" style="display: none;">
+      <p id="resultado"></p>
+    </div>
+  </div>
+
+  <script src="../js/question.js"></script>
+</body>
+</html>

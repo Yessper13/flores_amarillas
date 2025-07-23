@@ -28,7 +28,10 @@
             <img src="img/imagen10.jpg" alt="Miniatura 10" onclick="changeImage('img/imagen10.jpg')">
         </div>
     
-        
+        <div class="add-image-container">
+            <input type="file" id="addImageInput" accept="image/*">
+            <button onclick="addImage()">Agregar Imagen</button>
+        </div>
     </div>
 <!-- Contenedor del video -->
 <div class="video-container fade-in">
@@ -42,6 +45,26 @@
         function changeImage(src) {
             document.getElementById('displayed-image').src = src;
         }
+
+        // Permite agregar imágenes al carrusel
+        function addImage() {
+            const input = document.getElementById('addImageInput');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const sidebar = document.querySelector('.sidebar');
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Nueva imagen';
+                    img.onclick = function() { changeImage(img.src); };
+                    sidebar.appendChild(img);
+                    changeImage(img.src);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Video controles responsivos
         const video = document.getElementById('miVideo');
     if (window.innerWidth > 768) {
         video.setAttribute('controls', 'controls');

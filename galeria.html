@@ -32,11 +32,24 @@
             <img src="img/imagen10.jpg" alt="Miniatura 10" onclick="changeImage('img/imagen10.jpg')">
         </div>
     
-        <div class="add-image-container">
-            <label for="addImageInput" class="add-image-icon">
-                <img src="img/add.png" alt="Agregar Imagen" />
-            </label>
-            <input type="file" id="addImageInput" accept="image/*" style="display:none;">
+        <div class="add-controls-container">
+            <a href="index.html" class="volver-btn">
+                <img src="img/volver.png" alt="Volver" />
+            </a>
+            <div id="video-controls" style="display:none;">
+                <button id="play-pause-btn" class="video-btn">
+                    <img src="img/play.png" alt="Play/Pause" id="play-pause-icon"/>
+                </button>
+                <button id="mute-btn" class="video-btn">
+                    <img src="img/volume.png" alt="Mute/Unmute" id="mute-icon"/>
+                </button>
+            </div>
+            <div class="add-image-container">
+                <label for="addImageInput" class="add-image-icon">
+                    <img src="img/add.png" alt="Agregar Imagen" />
+                </label>
+                <input type="file" id="addImageInput" accept="image/*,video/*" style="display:none;">
+            </div>
         </div>
     </div>
 <!-- Contenedor del video -->

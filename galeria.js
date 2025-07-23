@@ -1,16 +1,19 @@
 function changeImage(src, isVideo = false) {
     const mainImage = document.getElementById('displayed-image');
     const mainVideo = document.getElementById('displayed-video');
+    const videoControls = document.getElementById('video-controls');
     if (isVideo) {
         mainImage.style.display = 'none';
         mainVideo.style.display = 'block';
         mainVideo.src = src;
         mainVideo.load();
         mainVideo.play();
+        videoControls.style.display = 'flex';
     } else {
         mainImage.style.display = 'block';
         mainVideo.style.display = 'none';
         mainImage.src = src;
+        videoControls.style.display = 'none';
     }
 }
 
@@ -56,3 +59,32 @@ document.querySelector('.add-image-icon').addEventListener('click', function() {
 });
 
 document.getElementById('addImageInput').addEventListener('change', addImage);
+
+// Video control logic
+const mainVideo = document.getElementById('displayed-video');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const playPauseIcon = document.getElementById('play-pause-icon');
+const muteBtn = document.getElementById('mute-btn');
+const muteIcon = document.getElementById('mute-icon');
+
+playPauseBtn.addEventListener('click', function() {
+    if (mainVideo.paused) {
+        mainVideo.play();
+        playPauseIcon.src = 'img/pause.png';
+    } else {
+        mainVideo.pause();
+        playPauseIcon.src = 'img/play.png';
+    }
+});
+
+mainVideo.addEventListener('play', function() {
+    playPauseIcon.src = 'img/pause.png';
+});
+mainVideo.addEventListener('pause', function() {
+    playPauseIcon.src = 'img/play.png';
+});
+
+muteBtn.addEventListener('click', function() {
+    mainVideo.muted = !mainVideo.muted;
+    muteIcon.src = mainVideo.muted ? 'img/mute.png' : 'img/volume.png';
+});

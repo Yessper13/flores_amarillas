@@ -1,141 +1,96 @@
 /* Estilos generales */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: black;
+    background: radial-gradient(circle at 60% 20%, #ffe066 0%, #fffbe6 100%);
+    color: #222;
+    min-height: 100vh;
     margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* Contenedor principal */
 .gallery-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 10px;
-  max-width: 1200px;
-  margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+    padding: 40px 16px 24px 16px;
+    max-width: 420px;
+    width: 100vw;
+    min-width: 0;
+    margin: 40px auto 0 auto;
+    background: rgba(0, 0, 0, 0.253);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgb(136, 255, 0);
+    position: relative;
+    animation: fadeInUp 1.2s;
+    overflow-x: hidden;
 }
 
-/* Barra lateral de miniaturas */
-.sidebar {
-  flex: 1 1 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.sidebar img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(255, 204, 0, 0.12);
-  cursor: pointer;
-  opacity: 0.85;
-  transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
-}
-
-.sidebar img:hover {
-  transform: scale(1.15) rotate(2deg);
-  box-shadow: 0 6px 24px rgba(255, 204, 0, 0.22);
-  opacity: 1;
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 /* Imagen principal */
 .main-image {
-  flex: 2 1 340px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 280px;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
-
-.main-image img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 18px;
-  box-shadow: 0 6px 24px rgba(255, 204, 0, 0.18);
-  transition: transform 0.5s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s;
-}
-
-.main-image img:hover {
-  transform: scale(1.04) rotate(-2deg);
-  box-shadow: 0 12px 40px rgba(255, 204, 0, 0.32);
-}
-
-/* Contenedor del video */
-.video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto 0 auto;
-  max-width: 700px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(255, 204, 0, 0.18);
-  animation: fadeIn 1.2s;
-}
-
-/* Animación de entrada */
-.fade-in {
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsividad */
-@media (max-width: 900px) {
-  .gallery-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 5px;
-  }
-  .main-image {
-    margin-bottom: 0;
-    max-width: 100vw;
-  }
-  .sidebar {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
+    width: 100%;
+    display: flex;
     justify-content: center;
-    padding: 0;
-  }
-  .sidebar img {
-    width: 60px;
-    height: 60px;
-  }
+    align-items: center;
+    margin-bottom: 12px;
 }
 
-@media (max-width: 600px) {
-    .sidebar img {
-        width: 60px;
-        height: 50px;
-    }
+.main-image img,
+.main-image video {
+    width: 100%;
+    max-width: 340px;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(255, 204, 0, 0.18);
+    background: #fff;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
 
-    .gallery-container {
-        padding: 0px;
-        min-height: 70vh;
-    }
+.main-image img:hover,
+.main-image video:hover {
+    box-shadow: 0 12px 40px rgba(255, 204, 0, 0.32);
+    transform: scale(1.03);
+}
 
-    .main-image {
-        padding: 0px;
-        min-height: 90vh;
+/* Barra lateral de miniaturas */
+.sidebar {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: #ffe066 #222;
+}
 
-    }
+.sidebar img {
+    min-width: 54px;
+    min-height: 54px;
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.10);
+    cursor: pointer;
+    opacity: 0.9;
+    border: 2px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+    background: #fff;
+}
+
+.sidebar img:hover {
+    transform: scale(1.12) rotate(2deg);
+    box-shadow: 0 6px 24px rgba(255, 204, 0, 0.22);
+    border: 2px solid #ffe066;
+    opacity: 1;
 }
 
 /* Nueva sección para agregar imágenes */
@@ -143,14 +98,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin: 24px auto 0 auto;
+    margin: 12px 0 0 0;
 }
 
 .add-image-container input[type="file"] {
     padding: 6px;
     border-radius: 8px;
-    border: 1px solid #e6b800;
+    border: 1px solid #d6ad09d3;
     background: #fffbe6;
     color: #333;
     font-size: 1rem;
@@ -172,5 +126,83 @@ body {
 .add-image-container button:hover {
     background: linear-gradient(90deg, #ffd700 0%, #ffe066 100%);
     transform: scale(1.07);
+}
+
+.add-image-icon img {
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #ffe066 0%, #ffd700 100%);
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.18);
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 8px;
+    border: 2px solid #fffbe6;
+}
+
+.add-image-icon img:hover {
+    transform: scale(1.18) rotate(10deg);
+    box-shadow: 0 6px 24px rgba(255, 204, 0, 0.22);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* Video container oculto en galería principal */
+.video-container {
+    display: none;
+}
+
+/* Animación de entrada */
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    .gallery-container {
+        max-width: 100vw;
+        padding: 8px 0 8px 0;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .main-image img,
+    .main-image video {
+        max-width: 96vw;
+        min-width: 0;
+    }
+    .sidebar {
+        gap: 8px;
+        padding: 8px 0;
+        overflow-x: auto;
+        width: 100vw;
+        border-radius: 0;
+    }
+    .sidebar img {
+        min-width: 44px;
+        min-height: 44px;
+        width: 44px;
+        height: 44px;
+    }
+    .add-image-container {
+        margin: 8px 0 0 0;
+    }
+}
+
+/* Oculta la barra de scroll en móviles pero permite desplazamiento */
+.sidebar::-webkit-scrollbar {
+    height: 6px;
+    background: #ffe066;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 6px;
 }
 

@@ -12,7 +12,11 @@
     <div class="gallery-container">
         <!-- Imagen principal -->
         <div class="main-image">
-            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal">
+            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal" style="display:block;">
+            <video id="displayed-video" style="display:none; width:100%; max-width:500px; border-radius:18px;" autoplay loop muted playsinline>
+                <source src="img/2025-04-16-093718035.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
         </div>
         <!-- Barra de miniaturas -->
         <div class="sidebar">
@@ -29,8 +33,10 @@
         </div>
     
         <div class="add-image-container">
-            <input type="file" id="addImageInput" accept="image/*">
-            <button onclick="addImage()">Agregar Imagen</button>
+            <label for="addImageInput" class="add-image-icon">
+                <img src="img/add.png" alt="Agregar Imagen" />
+            </label>
+            <input type="file" id="addImageInput" accept="image/*" style="display:none;">
         </div>
     </div>
 <!-- Contenedor del video -->
@@ -41,36 +47,6 @@
     </video>
 </div>
 
-    <script>
-        function changeImage(src) {
-            document.getElementById('displayed-image').src = src;
-        }
-
-        // Permite agregar imágenes al carrusel
-        function addImage() {
-            const input = document.getElementById('addImageInput');
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const sidebar = document.querySelector('.sidebar');
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = 'Nueva imagen';
-                    img.onclick = function() { changeImage(img.src); };
-                    sidebar.appendChild(img);
-                    changeImage(img.src);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        // Video controles responsivos
-        const video = document.getElementById('miVideo');
-    if (window.innerWidth > 768) {
-        video.setAttribute('controls', 'controls');
-    }
-
-        
-    </script>
+   <script src="galeria.js"></script>
 </body>
 </html>

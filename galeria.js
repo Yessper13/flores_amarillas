@@ -1,88 +1,150 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Miniatura de video en el carrusel
-    const sidebar = document.querySelector('.sidebar');
-    const videoThumb = document.createElement('img');
-    videoThumb.src = 'img/video-thumb.png';
-    videoThumb.alt = 'Video';
-    videoThumb.style.objectFit = 'cover';
-    videoThumb.onclick = function() {
-        changeImage('img/2025-04-16-093718035.mp4', true);
-    };
-    sidebar.appendChild(videoThumb);
+document.addEventListener('DOMContentLoaded', () => {
+    const galleryGrid = document.getElementById('gallery-grid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    const addMediaInput = document.getElementById('add-media-input');
 
-    // Solo un listener para agregar imagen
-    document.getElementById('addImageInput').addEventListener('change', addImage);
-});
+    let mediaItems = [
+        { type: 'image', src: 'img/imagen1.jpg' },
+        { type: 'image', src: 'img/imagen2.jpg' },
+        { type: 'image', src: 'img/imagen3.jpg' },
+        { type: 'image', src: 'img/imagen4.jpg' },
+        { type: 'image', src: 'img/imagen5.jpg' },
+        { type: 'image', src: 'img/imagen6.jpg' },
+        { type: 'image', src: 'img/imagen7.jpg' },
+        { type: 'image', src: 'img/imagen8.jpg' },
+        { type: 'image', src: 'img/imagen9.jpg' },
+        { type: 'image', src: 'img/imagen10.jpg' },
+        { type: 'video', src: 'img/2025-04-16-093718035.mp4', thumbnail: 'img/video-thumb.png' }
+    ];
 
-function changeImage(src, isVideo = false) {
-    const mainImage = document.getElementById('displayed-image');
-    const mainVideo = document.getElementById('displayed-video');
-    const videoControls = document.getElementById('video-controls');
-    if (isVideo) {
-        mainImage.style.display = 'none';
-        mainVideo.style.display = 'block';
-        mainVideo.src = src;
-        mainVideo.load();
-        mainVideo.play();
-        videoControls.style.display = 'flex';
-    } else {
-        mainImage.style.display = 'block';
-        mainVideo.style.display = 'none';
-        mainImage.src = src;
-        videoControls.style.display = 'none';
-    }
-}
+    let currentIndex = 0;
 
-// Permite agregar imágenes al carrusel
-function addImage() {
-    const input = document.getElementById('addImageInput');
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const sidebar = document.querySelector('.sidebar');
+    function createGalleryItem(item, index) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'gallery-item';
+        itemDiv.dataset.index = index;
+
+        if (item.type === 'image') {
             const img = document.createElement('img');
-            img.src = e.target.result;
-            img.alt = 'Nueva imagen';
-            img.onclick = function() { changeImage(img.src); };
-            sidebar.appendChild(img);
-            changeImage(img.src);
-        };
-        reader.readAsDataURL(input.files[0]);
-        input.value = ""; // Limpia el input para permitir agregar la misma imagen de nuevo si se desea
+            img.src = item.src;
+            img.alt = `Imagen ${index + 1}`;
+            itemDiv.appendChild(img);
+        } else if (item.type === 'video') {
+            const video = document.createElement('video');
+            video.src = item.src;
+            video.muted = true;
+            video.loop = true;
+            video.setAttribute('playsinline', '');
+            // Opcional: mostrar un thumbnail y reproducir al pasar el mouse
+            if(item.thumbnail) {
+                video.poster = item.thumbnail;
+            }
+            itemDiv.appendChild(video);
+
+            const videoIndicator = document.createElement('div');
+            videoIndicator.className = 'video-indicator';
+            itemDiv.appendChild(videoIndicator);
+
+            itemDiv.addEventListener('mouseenter', () => video.play());
+            itemDiv.addEventListener('mouseleave', () => video.pause());
+        }
+
+        itemDiv.addEventListener('click', () => openLightbox(index));
+        return itemDiv;
     }
-}
 
-// Video controles responsivos
-const video = document.getElementById('miVideo');
-if (window.innerWidth > 768) {
-    video.setAttribute('controls', 'controls');
-}
-
-// Video control logic
-const mainVideo = document.getElementById('displayed-video');
-const playPauseBtn = document.getElementById('play-pause-btn');
-const playPauseIcon = document.getElementById('play-pause-icon');
-const muteBtn = document.getElementById('mute-btn');
-const muteIcon = document.getElementById('mute-icon');
-
-playPauseBtn.addEventListener('click', function() {
-    if (mainVideo.paused) {
-        mainVideo.play();
-        playPauseIcon.src = 'img/pause.png';
-    } else {
-        mainVideo.pause();
-        playPauseIcon.src = 'img/play.png';
+    function renderGallery() {
+        galleryGrid.innerHTML = '';
+        mediaItems.forEach((item, index) => {
+            galleryGrid.appendChild(createGalleryItem(item, index));
+        });
     }
-});
 
-mainVideo.addEventListener('play', function() {
-    playPauseIcon.src = 'img/pause.png';
-});
-mainVideo.addEventListener('pause', function() {
-    playPauseIcon.src = 'img/play.png';
-});
+    function openLightbox(index) {
+        currentIndex = index;
+        const item = mediaItems[currentIndex];
 
-muteBtn.addEventListener('click', function() {
-    mainVideo.muted = !mainVideo.muted;
-    muteIcon.src = mainVideo.muted ? 'img/mute.png' : 'img/volumen.png';
+        lightboxImg.style.display = 'none';
+        lightboxVideo.style.display = 'none';
+        lightboxImg.classList.remove('active');
+        lightboxVideo.classList.remove('active');
+
+
+        if (item.type === 'image') {
+            lightboxImg.src = item.src;
+            lightboxImg.style.display = 'block';
+            lightboxImg.classList.add('active');
+        } else if (item.type === 'video') {
+            lightboxVideo.src = item.src;
+            lightboxVideo.style.display = 'block';
+            lightboxVideo.classList.add('active');
+            lightboxVideo.play();
+        }
+        lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxVideo.pause();
+        lightboxImg.src = "";
+        lightboxVideo.src = "";
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+        openLightbox(currentIndex);
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % mediaItems.length;
+        openLightbox(currentIndex);
+    }
+
+    function handleNewMedia(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const newItem = {
+                    type: file.type.startsWith('image/') ? 'image' : 'video',
+                    src: e.target.result
+                };
+                if (newItem.type === 'video') {
+                    // Para videos locales, el thumbnail es más complejo.
+                    // Por simplicidad, no se genera uno automáticamente.
+                }
+                mediaItems.push(newItem);
+                renderGallery();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Event Listeners
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+    addMediaInput.addEventListener('change', handleNewMedia);
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        }
+    });
+
+    // Initial Render
+    renderGallery();
 });

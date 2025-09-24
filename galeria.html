@@ -3,63 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Animada</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Galería de Recuerdos</title>
     <link rel="stylesheet" href="galeria.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="night"></div>
+
     <div class="gallery-container">
-        <!-- Imagen principal -->
-        <div class="main-image">
-            <img id="displayed-image" src="img/imagen1.jpg" alt="Imagen Principal" style="display:block;">
-            <video id="displayed-video" style="display:none; width:100%; max-width:500px; border-radius:18px;" autoplay loop muted playsinline>
-                <source src="img/2025-04-16-093718035.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
+        <header class="gallery-header">
+            <h1>Nuestros Momentos</h1>
+            <p>Una colección de nuestros recuerdos más preciados.</p>
+        </header>
+
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Las imágenes y videos se cargarán aquí dinámicamente -->
         </div>
-        <!-- Barra de miniaturas -->
-        <div class="sidebar">
-            <img src="img/imagen1.jpg" alt="Miniatura 1" onclick="changeImage('img/imagen1.jpg')">
-            <img src="img/imagen2.jpg" alt="Miniatura 2" onclick="changeImage('img/imagen2.jpg')">
-            <img src="img/imagen3.jpg" alt="Miniatura 3" onclick="changeImage('img/imagen3.jpg')">
-            <img src="img/imagen4.jpg" alt="Miniatura 4" onclick="changeImage('img/imagen4.jpg')">
-            <img src="img/imagen5.jpg" alt="Miniatura 5" onclick="changeImage('img/imagen5.jpg')">
-            <img src="img/imagen6.jpg" alt="Miniatura 6" onclick="changeImage('img/imagen6.jpg')">
-            <img src="img/imagen7.jpg" alt="Miniatura 7" onclick="changeImage('img/imagen7.jpg')">
-            <img src="img/imagen8.jpg" alt="Miniatura 8" onclick="changeImage('img/imagen8.jpg')">
-            <img src="img/imagen9.jpg" alt="Miniatura 9" onclick="changeImage('img/imagen9.jpg')">
-            <img src="img/imagen10.jpg" alt="Miniatura 10" onclick="changeImage('img/imagen10.jpg')">
-        </div>
-    
-        <div class="add-controls-container">
-            <a href="index.html" class="volver-btn">
+
+        <div class="gallery-controls">
+             <label for="add-media-input" class="control-button add-button">
+                <img src="img/add.png" alt="Agregar" />
+                <span>Agregar</span>
+            </label>
+            <input type="file" id="add-media-input" accept="image/*,video/*" style="display:none;">
+            <a href="index.html" class="control-button back-button">
                 <img src="img/volver.png" alt="Volver" />
+                <span>Volver</span>
             </a>
-            <div id="video-controls" style="display:none;">
-                <button id="play-pause-btn" class="video-btn">
-                    <img src="img/play.png" alt="Play/Pause" id="play-pause-icon"/>
-                </button>
-                <button id="mute-btn" class="video-btn">
-                    <img src="img/volumen.png" alt="Mute/Unmute" id="mute-icon"/>
-                </button>
-            </div>
-            <div class="add-image-container">
-                <label for="addImageInput" class="add-image-icon">
-                    <img src="img/add.png" alt="Agregar Imagen" />
-                </label>
-                <input type="file" id="addImageInput" accept="image/*,video/*" style="display:none;">
-            </div>
         </div>
     </div>
-<!-- Contenedor del video -->
-<div class="video-container fade-in">
-    <video id="miVideo" autoplay loop muted playsinline>
-        <source src="img/2025-04-16-093718035.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
-</div>
 
-   <script src="galeria.js"></script>
+    <!-- Lightbox/Modal para la vista a pantalla completa -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" class="lightbox-media" src="" alt="Imagen ampliada">
+            <video id="lightbox-video" class="lightbox-media" src="" autoplay loop controls playsinline></video>
+        </div>
+        <a class="lightbox-prev">&#10094;</a>
+        <a class="lightbox-next">&#10095;</a>
+    </div>
+
+    <script src="galeria.js"></script>
 </body>
 </html>

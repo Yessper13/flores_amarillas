@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+@layer base {
+  html {
+    @apply bg-[#0f172a] text-[#f1f5f9];
+  }
+
+  body {
+    @apply antialiased font-sans;
+  }
+
+  * {
+    @apply border-[#475569];
+  }
+}
+
+@layer utilities {
+  .bg-primary {
+    @apply bg-[#fbbf24];
+  }
+
+  .bg-secondary {
+    @apply bg-[#ec4899];
+  }
+
+  .bg-accent {
+    @apply bg-[#8b5cf6];
+  }
+
+  .text-primary {
+    @apply text-[#fbbf24];
+  }
+
+  .text-secondary {
+    @apply text-[#ec4899];
+  }
+
+  .border-primary {
+    @apply border-[#fbbf24];
+  }
+}

@@ -1,0 +1,145 @@
+.flowers-container {
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.petal {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #fbbf24;
+  border-radius: 50% 0 50% 50%;
+  left: 25px;
+  top: 10px;
+  transform-origin: 5px 40px;
+  transform: rotate(var(--rotate, 0deg));
+  animation: bloom 1s ease-in-out infinite;
+}
+
+.petal:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.petal:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.petal:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.petal:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.petal:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+@keyframes bloom {
+  0%, 100% {
+    transform: rotate(var(--rotate, 0deg)) scaleY(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(var(--rotate, 0deg)) scaleY(1);
+    opacity: 1;
+  }
+}
+
+.center {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #f59e0b;
+  border-radius: 50%;
+  left: 30px;
+  top: 30px;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 1);
+  }
+}
+
+/* Additional animations for variety */
+.flower:nth-child(3n) {
+  animation-name: floatSpinLeft;
+}
+
+@keyframes floatSpinLeft {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(-10deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(-10px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-40px) translateX(0px) rotate(10deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(10px) rotate(0deg);
+  }
+}
+
+.flower:nth-child(3n + 1) {
+  animation-name: floatSpinRight;
+}
+
+@keyframes floatSpinRight {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(10deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-40px) translateX(0px) rotate(-10deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-10px) rotate(0deg);
+  }
+}
+
+.flower:nth-child(3n + 2) {
+  animation-name: floatStraight;
+}
+
+@keyframes floatStraight {
+  0%, 100% {
+    transform: translateY(0px) scaleX(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-50px) scaleX(1.1);
+    opacity: 1;
+  }
+}

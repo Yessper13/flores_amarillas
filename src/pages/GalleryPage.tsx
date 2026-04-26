@@ -131,7 +131,7 @@ export const GalleryPage: React.FC = () => {
               type="file"
               multiple
               accept="image/*,video/*"
-              onChange={(e) => handleUpload(e.target.files!)}
+              onChange={(e) => e.target.files && handleUpload(e.target.files)}
               className="hidden"
               disabled={uploading}
             />

@@ -13,14 +13,12 @@
   --color-border: #475569;
 }
 
-* {
-  @apply border-color-border;
-}
+@layer base {
+  html {
+    @apply bg-[#0f172a] text-[#f1f5f9];
+  }
 
-html {
-  @apply bg-color-background text-color-text;
-}
-
-body {
-  @apply antialiased;
+  body {
+    @apply antialiased;
+  }
 }
